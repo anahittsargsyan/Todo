@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 interface Todo {
   done: boolean;
   description: string;
+  editing: boolean;
 }
 
 @Component({
@@ -15,9 +16,10 @@ export class AppComponent {
   count = null;
   title = 'v-todolist';
   todoDescription = '';
-  todos: Todo[] = [];
   activeFilter = 'all';
+  todos: Todo[] = [];
 
+  constructor() {}
   get displayedTodos() {
     this.count = this.todos.filter((todo) => !todo.done).length;
     switch (this.activeFilter) {
@@ -42,6 +44,7 @@ export class AppComponent {
     this.todos.push({
       done: false,
       description: this.todoDescription,
+      editing: false,
     });
 
     this.todoDescription = '';
@@ -54,6 +57,7 @@ export class AppComponent {
 
   removeTodo(i) {
     this.todos.splice(i, 1);
+    this.saveItemsToStorage();
   }
 
   selectAll() {
@@ -76,5 +80,12 @@ export class AppComponent {
       return items;
     }
     return [];
+  }
+  editTodo(todo) {
+    todo.editing = true;
+  }
+
+  doneTodo(todo) {
+    todo.editing = false;
   }
 }

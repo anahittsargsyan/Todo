@@ -18,18 +18,31 @@
       <div
         class="todo-container"
         *ngFor="let todo of displayedTodos; let i = index"
+        (keyup.enter)="doneTodo(todo)"
       >
         <div class="todo-check">
-          <mat-checkbox
-            class="example-margin"
-            [(ngModel)]="todo.done"
-            [ngModelOptions]="{ standalone: true }"
-          >
-            {{ todo.description }}
-          </mat-checkbox>
-          <button mat-flat-button class="delete" (click)="removeTodo(i)">
-            X
-          </button>
+          <div class="checkbox">
+            <mat-checkbox
+              class="example-margin"
+              [(ngModel)]="todo.done"
+              [ngModelOptions]="{ standalone: true }"
+              (dblclick)="editTodo(todo)"
+            >
+              {{ todo.description }}
+            </mat-checkbox>
+            <form ng-submit="doneEditing(todo)" *ngIf="todo.editing">
+              <input
+                class="editable"
+                [(ngModel)]="todo.description"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </form>
+          </div>
+          <div class="buttonDelete">
+            <button mat-flat-button class="delete" (click)="removeTodo(i)">
+              X
+            </button>
+          </div>
         </div>
       </div>
     </div>

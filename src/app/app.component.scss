@@ -66,10 +66,6 @@ h1 {
     }
   }
 
-  .todos {
-    margin-top: 5px;
-  }
-
   .todo-container {
     box-sizing: border-box;
     display: flex;
@@ -198,6 +194,28 @@ mat-icon {
     display: inline-block;
   }
 }
-.mat-checkbox-layout {
-  margin-top: 40px;
+
+.buttonDelete {
+  height: 50px;
+  width: 50px;
+  float: right;
+}
+mat-checkbox {
+  margin-top: 12px;
+  position: absolute;
+  width: 400px;
+}
+.checkbox {
+  width: 100px;
+}
+.editable {
+  margin-left: 32px;
+  height: 35px;
+  margin-top: -8px;
+  position: absolute;
+  height: 61px;
+  width: 434px;
+  font-family: $body-font;
+  font-weight: 300;
+  font-size: 24px;
 }
